@@ -1,0 +1,3 @@
+D:/cpp_study/mutipy_file_cmaklists/build/CMakeFiles/test.dir
+D:/cpp_study/mutipy_file_cmaklists/build/CMakeFiles/edit_cache.dir
+D:/cpp_study/mutipy_file_cmaklists/build/CMakeFiles/rebuild_cache.dir
