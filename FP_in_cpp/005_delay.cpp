@@ -26,4 +26,8 @@ int main()
     int d = add.run();
 
     cout<< c <<"  " << d << endl;
+
+    function<int()> aa ; 
+     aa = [a, b](){return a * b;};
+     aa();
 }
