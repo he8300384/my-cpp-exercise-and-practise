@@ -1,6 +1,6 @@
 #include<functional>
 #include<iostream>
-
+// bind 是用于包裹函数的函数 它是个中介负责存储函数的参数 或者 使得函数形式转化为统一的样式
 using namespace std;
 
 struct B

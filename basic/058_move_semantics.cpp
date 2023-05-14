@@ -60,7 +60,6 @@ int main()
     A a2;
     a2 = a1;
 
-    
      //右值引用 带来的移动构造
     // auto f = []{A aa; aa.alloc(); *aa.data = 8;return aa;};
     // A a3 = a1;

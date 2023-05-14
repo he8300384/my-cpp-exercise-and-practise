@@ -3,7 +3,14 @@
 #include<algorithm>
 
 using namespace std;
- 
+/*
+[]          空
+[&]         全以引用捕获
+[=]         全以值捕获
+[this]      值防止捕获this指针
+[&,a]       除a  全以引用捕获
+[=,&b]      除a引用 其余值捕获
+ */
 int main(){
     vector<int> v{1,2,3,4,5};
 
