@@ -3,7 +3,7 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
-//延时排序 只对选择区域排序 以优化运行速度
+//延时排序 只对选择区域排序 以优化运行速度 非最高效版因为只有最后两个数会被后续使用
 
 std::vector<unsigned int> cache {0, 1};
 

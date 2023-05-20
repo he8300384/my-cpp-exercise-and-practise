@@ -41,6 +41,8 @@ int main()
     vector<int> v2(10);
     info(v2);
 
+    for(auto i:v2) cout << i <<endl;
+
     vector<int> v4({1,2,3,4,5});
 
     //首地址
