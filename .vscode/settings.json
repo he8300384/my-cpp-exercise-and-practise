@@ -72,6 +72,8 @@
         "xloctime": "cpp",
         "xtree": "cpp",
         "numeric": "cpp",
-        "random": "cpp"
+        "random": "cpp",
+        "bitset": "cpp",
+        "regex": "cpp"
     }
 }

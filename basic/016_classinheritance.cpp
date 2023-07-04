@@ -43,4 +43,7 @@ int main()
 
      c.func();
      c.pepole::func();//如此调用基类已经屏蔽的函数
+
+     pepole* p =  new boy(1,"pp");
+     p->func();
 }

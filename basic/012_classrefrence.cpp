@@ -13,6 +13,8 @@ class dog
      
 };
 
+
+
 class pepole
 {
     public:
@@ -25,6 +27,7 @@ class pepole
 int main()
 {
        dog hauhua ("huahua");
+       
         
        pepole ac("ac", hauhua);
 }
