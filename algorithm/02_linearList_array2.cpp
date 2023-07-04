@@ -43,7 +43,17 @@ int main(){
     cout << l->length<<endl;
 
     mylist y =x;
-    cout << y.length ;
+    cout << y.length <<endl; ;
+
+    int L[10]  = {1,2,3,4,5,6,7,8,9,10};
+
+    copy_backward(L , L+2, L+10);
+
+   for(auto i:L)
+    cout<< i << " ";
+    cout <<endl;
+     
+     
 }
 
 
