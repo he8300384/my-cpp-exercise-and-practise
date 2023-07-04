@@ -73,12 +73,12 @@ int main()
 
     // delete [] a;
 
-     arrayList<int>  *x =  new  arrayList<int>(10) ;
+     arrayList<int>   x(100);
      
    
     //x->insert(1,2);
     
-   cout <<x->capacity()  << " " << x->indexof(1); 
+   cout <<x.capacity()  << " " << x.indexof(1); 
 }
 
 
