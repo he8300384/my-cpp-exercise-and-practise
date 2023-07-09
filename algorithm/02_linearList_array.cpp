@@ -3,7 +3,9 @@
 #include <vector>
 #include <algorithm> //copy
 #include <cstddef>   //ptrdiff_t
+#include <iterator>  //ostream_iterator
 
+//数据结构和算法一书 中的实现和练习
 //这是c++ 线性表实现 基础类型有bug  且很罗嗦 随手练模板和继承 否则可以更简单的实现
 
 using namespace std;
@@ -50,30 +52,46 @@ public:
 
     myiterator(T *thePosition = 0) { position = thePosition; }
 
-    T& operator*() const{return *position;}
-    T* operator->() const{return &*position;}
+    T &operator*() const
+    {
+        cout << "迭代器寻找内容为: ";
+        return *position;
+    }
+    T *operator->() const { return &*position; }
 
-    myiterator& operator ++() {++position; return *this;}  //前加
-    myiterator operator ++(int) //后加
+    myiterator &operator++()
+    {
+        ++position;
+        return *this;
+    }                          //前加
+    myiterator operator++(int) //后加
     {
         myiterator old = *this;
         ++position;
-        return old; 
+        return old;
     }
 
-    myiterator& operator --(){--position; return *this;}//前减
-    iterator operator --(int) // 后减
+    myiterator &operator--()
+    {
+        --position;
+        return *this;
+    }                          //前减
+    myiterator operator--(int) // 后减
     {
         iterator old = *this;
         --position;
         return old;
     }
 
-    bool operator != (const myiterator right)const
-    {return position != right.position;}
-    
-    bool operator == (const myiterator right)const
-    {return position != right.position;}
+    bool operator!=(const myiterator right) const
+    {
+        return position != right.position;
+    }
+
+    bool operator==(const myiterator right) const
+    {
+        return position != right.position;
+    }
 
 protected:
     T *position;
@@ -83,10 +101,15 @@ protected:
 template <class T>
 class arrayList : public linearList<T>
 {
+
+    template <class TT>
+    friend ostream &operator<<(ostream &out, const arrayList<TT> &x); //模板函数作为友元
 public:
     arrayList(int initialCapacity = 10);
     arrayList(const arrayList<T> &);
     ~arrayList() { delete[] element; }
+
+    myiterator<T> arrayList_iterator; //迭代器
 
     bool empty() const { return listSize; }
     int size() const { return listSize; }
@@ -95,6 +118,23 @@ public:
     void erase(int theIndex);
     void insert(int theIndex, const T &theElement);
     void output(ostream &out) const;
+
+    //作业要求添加的函数
+    T &operator[](int x) const
+    {
+        checkIndex(x);
+        return element[x];
+    }
+    void push_back(const T &item);
+    void pop_back();
+    void clear()
+    {
+        int size = listSize;
+        for (int i = 0; i < size; i++)
+        {
+            pop_back();
+        }
+    }
 
     int capacity() const { return arrayLength; }
 
@@ -122,12 +162,23 @@ int main()
     cout << x->capacity() << " " << endl;
 
     arrayList<string> y(100);
-    y.insert(1, "aa");
-    y.insert(2, "bb");
-    y.insert(3, "cc");
+    y.push_back("aa");
+    y.push_back("bb");
+    y.push_back("cc");
+    y.push_back("dd");
+    y.push_back("ee");
+
     cout << y.get(1) << endl;
     cout << y.size() << endl;
-    y.erase(1);
+    cout << "元素:" << y << endl;
+    // y.erase(1);
+    y.pop_back();
+
+    cout << "元素:" << y << endl;
+
+    auto i = y.arrayList_iterator;
+
+    cout << *i++; //! bug 解引无效
 }
 
 // arraylist 函数实现
@@ -145,6 +196,7 @@ arrayList<T>::arrayList(int initialCapacity)
 
     arrayLength = initialCapacity;
     element = new T[arrayLength];
+    arrayList_iterator = myiterator<T>(element);
     listSize = 0;
 }
 
@@ -189,8 +241,9 @@ int arrayList<T>::indexof(const T &theElement) const
 template <class T>
 void arrayList<T>::erase(int theIndex)
 {
-    checkIndex(theIndex);
+    checkIndex(theIndex); //！ 读取bug我多加了 ++
     //复制尾部内容到删除点
+    // copy(element + theIndex + 1, element + listSize, element + theIndex); //这里有输出错误
     copy(element + theIndex + 1, element + listSize, element + theIndex);
     element[--listSize].~T(); //调用析构 清除最后一个元素 int有析
 }
@@ -208,6 +261,7 @@ void arrayList<T>::insert(int theIndex, const T &theElement)
 
     if (listSize == arrayLength) //如果满倍增
     {
+        cout << "空间不够倍增\n";
         changeLength1D(element, arrayLength, 2 * arrayLength);
         arrayLength *= 2;
     }
@@ -221,14 +275,44 @@ void arrayList<T>::insert(int theIndex, const T &theElement)
 }
 
 template <class T>
-void arrayList<T>::output(ostream &out) const
+void arrayList<T>::output(ostream &out) const //书上传参没成功 用了简单直接的友元函数方式 书上方式倒是可以避免写友元
 {
-    // copy(element, element + listSize, ostream_iterator<T>(cout, " "));
+    copy(element, element + listSize, ostream_iterator<T>(cout, " "));
 }
 
 template <class T>
 ostream &operator<<(ostream &out, const arrayList<T> &x)
 {
-    x.output(out);
+    // x.output(out); //书上传参没成功 用了简单直接的友元函数方式 书上方式倒是可以避免写友元
+    for (int i = 1; i <= x.listSize; i++)
+        out << *(x.element + i) << " ";
     return out;
+}
+
+template <class T>
+void arrayList<T>::push_back(const T &item)
+{
+    if (listSize == arrayLength) //如果满倍增
+    {
+        cout << "空间不够倍增\n";
+        changeLength1D(element, arrayLength, 2 * arrayLength);
+        arrayLength *= 2;
+    }
+
+    element[listSize + 1] = item;
+    listSize++;
+    cout << "向后插入成功\n";
+}
+
+template <class T>
+void arrayList<T>::pop_back()
+{
+    cout << "表长" << listSize << endl;
+    if (listSize == 0)
+    {
+        cout << "没有元素不能弹出";
+        return;
+    }
+    listSize--;
+    element[listSize].~T();
 }
