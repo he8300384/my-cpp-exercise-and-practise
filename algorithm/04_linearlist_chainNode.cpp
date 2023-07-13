@@ -2,7 +2,9 @@
 #include<vector>
 
 using namespace std;
-//依照书上实现简单链表 并练习模板编程 
+//依照书上实现简单链表 并练习模板编程
+
+
 
 //线性表抽象基类 
 template<class T>
@@ -26,9 +28,14 @@ struct chainNode
     T element;
     chainNode<T> *next;
 
-    chainNode() {}
+    chainNode() {cout<< "ch默认构造";}
     chainNode(const T &element) {this->element = element;}
-    chainNode(const T& element ,chainNode<T> *next){this->element = element;this->next = next;}
+    chainNode(const T &element ,chainNode<T> *next)
+    {
+        cout<< "ch双参数构造";
+        this->element = element;
+        this->next = next;
+    }
 };
 
 template<class T>
@@ -47,8 +54,9 @@ class chain : public linearList<T>
     void insert(int theIndex, const T& theElement);
     void output () const;  
 
-    void push_back(const T& theElement)
+    void push_back(const T&  theElement)
     {
+         
         chainNode<T> *newNode = new  chainNode<T> (theElement, NULL);
         chainNode<T> *p = firstNode;
         if(listSize == 0)
@@ -60,6 +68,7 @@ class chain : public linearList<T>
             p->next = newNode;
         }    
         listSize++;
+        cout<< "\n后插入\n";
     }
 
     protected:
@@ -68,23 +77,6 @@ class chain : public linearList<T>
     int listSize;
 };
 
-int main()
-{
-     chain<int> c(10);
-     c.push_back(1);
-     c.push_back(2);
-     c.push_back(3);
-     c.push_back(4);
-     c.push_back(5);
-     c.push_back(6);
-     c.push_back(7);
-     c.push_back(8);
-
-     c.insert(3 ,9);
-     c.erase(6);
-
-     c.output();
-}
 
 template<class T>
 chain<T>::chain(int initialCapacity)
@@ -99,7 +91,7 @@ template<class T>
 chain<T>::chain(const chain<T>& theList)
 {
     listSize = theList.listSize;
-    if(listSize == 0){firstNode == 0; return;}
+    if(listSize == 0){firstNode = 0; return;}
 
     chainNode<T>* sourceNode = theList.firstNode; //从源对象第一节点开始复制
     firstNode = new chainNode<T>(sourceNode->element);
@@ -164,8 +156,8 @@ void chain<T>::erase(int index)
 
     if(index == 0)
     {
-        eraseNode == firstNode;
-        firstNode == firstNode->next ;
+        eraseNode = firstNode;
+        firstNode = firstNode->next ;
     }
     else
     {
@@ -222,3 +214,6 @@ void chain<T>::checkIndex(int theIndex)const
         theIndex = listSize;
     }
 }
+
+
+
