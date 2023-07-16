@@ -14,6 +14,7 @@ class A
         data = new int;
         memset(data, 0, sizeof(int));
     }
+    
     A(const A &a ){  //普通拷贝  堆区新分配搬运旧内容
         cout<<"调用普通拷贝构造\n";
         if(data == nullptr) alloc();

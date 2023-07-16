@@ -28,11 +28,11 @@ struct chainNode
     T element;
     chainNode<T> *next;
 
-    chainNode() {cout<< "ch默认构造";}
+    chainNode() {cout<< "ch默认构造\n";}
     chainNode(const T &element) {this->element = element;}
     chainNode(const T &element ,chainNode<T> *next)
     {
-        cout<< "ch双参数构造";
+        cout<< "ch双参数构造\n";
         this->element = element;
         this->next = next;
     }
@@ -54,10 +54,11 @@ class chain : public linearList<T>
     void insert(int theIndex, const T& theElement);
     void output () const;  
 
-    void push_back(const T&  theElement)
+    void binSort(int range);
+    void push_back(const T& theElement)
     {
          
-        chainNode<T> *newNode = new  chainNode<T> (theElement, NULL);
+        chainNode<T> *newNode = new  chainNode<T> ( theElement  , NULL);
         chainNode<T> *p = firstNode;
         if(listSize == 0)
             firstNode =  newNode;

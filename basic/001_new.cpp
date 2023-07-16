@@ -10,7 +10,8 @@ struct People
 
    People(int a, string n):age(a),name(n){}
    People(const People& p):age(p.age),name(p.name){cout<<"拷贝构造\n";}
-
+   People(  People&& p):age(p.age),name(p.name){cout<<"移动构造\n";}
+   void out(){cout << name << endl;}
 };
 
 struct car
@@ -26,6 +27,7 @@ struct node
     T element;
     node<T>* next;
     node(T e, node<T>* n): element(e), next(n){}
+    node(node && n ): element(n.element), next(n.next){}
 };
 
 template<class T>
@@ -34,33 +36,47 @@ struct chain
     node<T>* first   ;
     int size = 0;
      
-    void append(T &ele )
+    void append(T &&ele )
     {
-        node<T>* newNode = new node<T>(ele, NULL);
+        node<T>* newNode = new node<T>(move(ele), NULL);
         node<T>* p = first;
         if(size == 0) 
             first = newNode;
         else
+        {
             while(p->next != NULL) 
                 p = p->next;
-            p->next = newNode;     
+            p->next = newNode; 
+        }    
         size++;        
+    }
+
+    void out()
+    {
+        node<T>* p = first;
+        while(true)
+        {
+            if(p == NULL) break;
+            p->element.out();
+            p = p->next;
+           
+        }
     }
 };
 
 int main()
 {
-    People p1(3, "ss");
-    People p2(3, "ss");
-    People p3(3, "ss");
-    People p4(3, "ss");
-
-    car* cc =new car(223, p1);
-
     chain<People> c;
-    c.append( p1);
-    c.append( p2);
-    c.append( p3);
+    c.append(People(3, "ss"));
+    c.append(People(4, "aa"));
+    c.append(People(5, "ee"));
+    c.append(People(6, "bb"));
+    c.append(People(7, "ef"));
+    c.append(People(4, "cs"));
+    c.append(People(3, "rt"));
+    c.append(People(1, "nb"));
+     
+     c.out();
 
     cout <<c.size;
 }

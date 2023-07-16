@@ -1,3 +1,7 @@
 [Bb]uild/
 /[Bb]uild/
 basic/out/
+FP_in_cpp/out/
+STD/out/
+reflection/out/
+algorithm/out/
