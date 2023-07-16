@@ -3,7 +3,7 @@
 #include "00_he_testTime.cpp"
 #include "04_linearlist_chainNode.cpp"
 //使用了前面创建的链表  进行箱子排序 期间遇到了类构造 传值问题 莫名其妙又正确了 奇怪
-
+//这是一个稳定排序
 using namespace std;
 
 struct  studentRecord
@@ -60,15 +60,15 @@ template<class T>
 void chain<T>::binSort(int range)
 {
    chainNode<T> **bottom, **top; //双重指针 用于指向 存桶子数组 的节点
-   bottom = new chainNode<T> *[range + 1];
-   top = new chainNode<T>* [range + 1];
+   bottom = new chainNode<T> *[range + 1];//箱子堆底
+   top = new chainNode<T>* [range + 1];//箱子堆顶
 
    for(int b = 0; b<= range; b++)   
       bottom[b]= NULL;//箱底设空标志位
 
    for(; firstNode != NULL; firstNode = firstNode->next)
    {
-      int theBin = firstNode->element;
+      int theBin = firstNode->element;//强制转换学生类 抽取序号
       if(bottom[theBin] == NULL)
          bottom[theBin] = top[theBin] = firstNode;
       else
@@ -78,14 +78,19 @@ void chain<T>::binSort(int range)
 
    chainNode<T> *y = NULL;
    for(int theBin = 0; theBin <= range; theBin ++)
-      if(bottom[theBin] != NULL)
+   {
+      int c= 0;
+      if(bottom[theBin] != NULL) //这是一个将上面 断开的桶子首尾相连的操作
       {
          if(y == NULL)
             firstNode = bottom[theBin];
          else
-            y->next = bottom[theBin];
-         y= top[theBin];   
+            y->next = bottom[theBin]; //! 连接首部
+         y= top[theBin];              //! 标志位跳到尾部 下轮循环将连接下个桶的首部
+          
       }  
+      cout << c << endl;
+   }   
    if(y != NULL)
          y->next = NULL;
    delete [] bottom;
