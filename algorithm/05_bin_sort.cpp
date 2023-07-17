@@ -109,7 +109,7 @@ int main()
    ch.push_back(studentRecord(2, "xxx"));
    ch.push_back(studentRecord(1, "yyy"));
    ch.push_back(studentRecord(5, "zzz"));
-   ch.push_back(studentRecord(0, "rrr"));  
+   ch.push_back(studentRecord(0, "rrr"));
 
    //binSort(ch, 6); //外部函数
 
