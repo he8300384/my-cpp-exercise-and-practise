@@ -1,5 +1,10 @@
 #include<functional>
 #include<iostream>
+/*
+The std::function is a general-purpose polymorphic function wrapper. It's part of the C++ Standard Library. 
+Instances of std::function can store, copy, and invoke any Callable target -- functions,lambda expressions, bind expressions, 
+or other function objects, as well as pointers to member functions and pointers to data members.
+*/
 
 using namespace std;
 
@@ -24,6 +29,8 @@ struct B
 using F = void(int, const string&); //函数类型 别名
 
 F show; //用别名声明普通函数
+
+static int a = 20;//仅仅此代码文本访问的全局变量
 
 int main(){
     //1 普通函数包装   

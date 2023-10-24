@@ -4,6 +4,13 @@
 
 using namespace std;
 
+/*std::shared_ptr is a smart pointer in the C++ Standard Library that retains shared ownership of an object through a pointer. 
+Several shared_ptr objects may own the same object, and the object is destroyed and its memory deallocated when the last shared_ptr owning the object is destroyed.
+
+shared_ptr是一种智能指针（smart pointer），作用有如同指针，但会记录有多少个shared_ptrs共同指向一个对象。这便是所谓的引用计数（reference counting）。
+一旦最后一个这样的指针被销毁，也就是一旦某个对象的引用计数变为0，这个对象会被自动删除。这在非环形数据结构中防止资源泄露很有帮助。
+*/
+
 class pepole
 {
     int m_num;
