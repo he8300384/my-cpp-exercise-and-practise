@@ -77,6 +77,8 @@
         "regex": "cpp",
         "ranges": "cpp",
         "span": "cpp",
-        "stack": "cpp"
-    }
+        "stack": "cpp",
+        "hash_map": "cpp"
+    },
+    "cmake.sourceDirectory": "F:/STUDY/Cpp/my-cpp-exercise-and-practise/mutipy_file_cmaklists"
 }

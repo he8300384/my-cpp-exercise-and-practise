@@ -46,8 +46,9 @@ int main(){
                                                      //注意 写法又不一样 多一个参数 用来传递实例
     function<void(B&, int, const string&)> fn5  =bind(&B::show, placeholders::_1, placeholders::_2, placeholders::_3); 
     fn5(b1, 5, "包装器包装普通成员函数后调用");//这样不能用于模板 可以提前绑定对象 方便模板化
-
-    function<void(int, const string&)> fn5_2  =bind(&B::show, &b1, placeholders::_1, placeholders::_2); //注意用引用
+    
+    //以下方法在类中的定义较为方便因为可以使用this指针 
+    function<void(int, const string&)> fn5_2  =bind(&B::show, &b1, placeholders::_1, placeholders::_2); //注意用引用 
     fn5_2(5, "包装器包装普通成员函数 提前绑定实例 减少调用参数 后调用");//可用于模板
 
     

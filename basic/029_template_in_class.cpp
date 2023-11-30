@@ -31,6 +31,13 @@ void classFunc<T1>::out2(T a)
         {                  
             cout << "使用在外定义模板函数显示 :" << a <<"\n";           
         }   
+
+class C2
+{
+    public:
+    template <typename T>
+    void out(T a){cout << "普通类里的模板函数显示 ："<< a <<endl;}
+};       
  
 
 int main()
@@ -38,5 +45,10 @@ int main()
     classFunc<int> a;
     a.out(11);
     a.out2(11);
+
+    C2  c;
+    c.out("ccc");
+    c.out(2);
+
 }
     
