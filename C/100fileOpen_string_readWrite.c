@@ -2,7 +2,7 @@
 
  //EOF 文件尾部为 -1
 
-//单字符写
+//字符串符写
 errno_t putstring(const char* filename)
 {
     FILE* pf = NULL;
@@ -33,9 +33,9 @@ errno_t getstring(const char* filename)
 
      char str[256] = {0}; //用于存储字符串
 
-    while(!feof(pf)) //最好这样写 因为换行可能导致 文件结束在空白行
+    while(fgets(str, 50, pf))   //一次读最多50个char 存储到str 读到文件EOF fget返回null
     {
-        fgets(str, 50, pf);  //一次读最多50个char 存储到str
+           
         printf("%s", str);      
     }
     

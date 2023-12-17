@@ -30,7 +30,7 @@ int main()
     fseek(file, 0, SEEK_SET); //fseek is a function in C and C++ that is used to move the file pointer to a specific location in a file. It is defined in stdio.h.
     //[^,] 让中建的 逗号或者其余标点可被识别
     
-    fscanf(file, "(%[^;]; %d; %c)", p2.name, &p2.age, &p2.gender); //注意取地址符号参数是地址  [^;] 不去读取 ;
+    fscanf(file, "(%[^;]; %d; %c)", p2.name, &p2.age, &p2.gender); //注意取地址符号参数是地址  [^;] 遇到;结束读取字符串  本来是遇到空格 ;
     printf("(%s %d %c)", p2.name, p2.age, p2.gender);
 
     //fclose(file);
