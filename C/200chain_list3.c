@@ -136,6 +136,24 @@ void clearList(List* list)
     initList(list);
 }
 
+//反转链表
+void reverse(List* list)
+{
+    Node* ptr = list->head;
+    if(ptr == NULL)
+        return;
+    Node* temp = NULL; 
+    while (ptr != NULL)
+    {
+        Node* temp2 = ptr->next;
+        ptr->next = temp; 
+        temp = ptr;
+        ptr = temp2;
+    }
+    list->end = list->head;
+    list->head = temp;
+}
+
 //存储内容
 void saveList(List* list, const char* position)
 {
@@ -182,11 +200,12 @@ int main()
     initList(&list);
 
     loadFile(&list, "out/chainList.txt");
-
+    printList(&list);
+    printf("\n");
     //Item i = {"sfs", 98};
     //append(&list, i);
-    inputItem(&list);
-
+    //inputItem(&list);
+    reverse(&list);
     printList(&list);
 
     saveList(&list, "out/chainList.txt");

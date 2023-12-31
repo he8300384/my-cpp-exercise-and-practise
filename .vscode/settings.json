@@ -78,7 +78,8 @@
         "ranges": "cpp",
         "span": "cpp",
         "stack": "cpp",
-        "hash_map": "cpp"
+        "hash_map": "cpp",
+        "array": "cpp"
     },
     "cmake.sourceDirectory": "F:/STUDY/Cpp/my-cpp-exercise-and-practise/mutipy_file_cmaklists"
 }
