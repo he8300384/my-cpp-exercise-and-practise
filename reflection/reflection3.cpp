@@ -10,6 +10,7 @@
     对与只需要批量 序列化 属性的情况够用
 
 劣势：
+    只实现了属性 自动 get set
     侵入式
     属性操作是批量的无法单独操控 
     基类 辅助添加类 操作函数 改写量不小
@@ -35,7 +36,7 @@ class BaseRefect
 public:
     void doWrite(){for(auto &f : to_write) f(this);} //遍历函数指针数组 输出每一个属性
 
-    void doRead(){for(auto &f : to_read) f(this);} //遍历函数指针数组 读取每一个属性
+    void doRead(){for(auto &f : to_read) f(this);}  //遍历函数指针数组 读取每一个属性
 
     void add(FUNC &write, FUNC &read) //往所有队添加函数指针
     {

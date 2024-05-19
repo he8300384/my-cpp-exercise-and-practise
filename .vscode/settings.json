@@ -79,7 +79,13 @@
         "span": "cpp",
         "stack": "cpp",
         "hash_map": "cpp",
-        "array": "cpp"
+        "array": "cpp",
+        "any": "cpp",
+        "*.tcc": "cpp",
+        "cstdarg": "cpp",
+        "cwctype": "cpp",
+        "memory_resource": "cpp",
+        "string_view": "cpp"
     },
     "cmake.sourceDirectory": "F:/STUDY/Cpp/my-cpp-exercise-and-practise/mutipy_file_cmaklists"
 }

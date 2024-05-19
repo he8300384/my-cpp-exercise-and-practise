@@ -13,7 +13,7 @@ class abstract_toy {
     int price = 0;
     virtual void run() = 0;
     };
-
+ 
 //2222要创建类的拓展
 //! 3个步凑拓展
 //! AAA追加 枚举

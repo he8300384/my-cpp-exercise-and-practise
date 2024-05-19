@@ -18,17 +18,20 @@ class Demo {
     Demo(std::ostream& output) : output(output){}
 
 template<class T>
-auto write(T& myobj) -> decltype(myobj.reflect(*this), void()) {
+auto write(T& myobj) -> decltype(myobj.reflect(*this), void()) 
+{
     output << "{";
     flag = false;   
     myobj.reflect(*this);
 output << "}\n";
 }
-void write(int val) {
-output << val;
+void write(int val) 
+{
+    output << val;
 }
-void write(std::string& val) {
-output << '"' << val << '"';
+void write(std::string& val) 
+{
+    output << '"' << val << '"';
 }
 
 template<class T>
@@ -42,8 +45,10 @@ write(myfield);
 return *this;
 }
 };
+
 int main() {
 Demo myObj(std::cout);
+
 Employee emp1 = { "2324354", 90000 };
 myObj.write(emp1);
 Employee emp2 = { "235566", 50000 };

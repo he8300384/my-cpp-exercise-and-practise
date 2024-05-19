@@ -1,0 +1,2 @@
+data: i 10
+name: NSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE Example

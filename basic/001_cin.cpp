@@ -1,5 +1,6 @@
 #include<iostream>
 #include<string.h>
+#include<sstream>
 
 using namespace std;
 
@@ -10,4 +11,6 @@ int main()
     cin >> name;
     cout<<"你输入了"<< name <<"\n";
     cout << " git\n";
+    cout << "aaa" + std::to_string(1) + "bbb\n";
 }
+
