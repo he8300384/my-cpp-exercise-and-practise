@@ -1,0 +1,23 @@
+Type: Group Name: group1 ActorNum: 8
+{
+  Type: Actor Name: actor5 Age: 50
+  Type: Actor Name: actor4 Age: 10
+  Type: Actor Name: heqin Age: 40
+  Type: Actor Name: actor12 Age: 30
+  Type: Actor Name: heqin Age: 12
+  Type: Actor Name: actor2 Age: 20
+  Type: Group Name: group1 ActorNum: 3
+  {
+    Type: Actor Name: heqin Age: 12
+    Type: Group Name: group1 ActorNum: 3
+    {
+      Type: Actor Name: heqin Age: 12
+      Type: Actor Name: actor2 Age: 20
+      Type: Actor Name: actor4 Age: 10
+    }
+    Type: Actor Name: actor4 Age: 10
+  }
+  Type: Actor Name: actor4 Age: 10
+}
+Type: Actor Name: actor11 Age: 20
+Type: Actor Name: actor22 Age: 21
